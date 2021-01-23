@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-table :data="menulist" style="width: 100%" height="480" default-expand-all row-key="id" :tree-props="{children: 'children'}">
+    <el-table :data="menulist" style="width: 100%" default-expand-all row-key="id" :tree-props="{children: 'children'}">
       <el-table-column label="菜单编号" width="100">
         <template slot-scope="scope">
           <span style="margin-left: 10px">{{ scope.row.id }}</span>
@@ -102,5 +102,8 @@ export default {
 <style  lang="" scoped>
 .list {
   overflow: auto;
+}
+.el-table{
+  height: calc(100vh - 60px);
 }
 </style>

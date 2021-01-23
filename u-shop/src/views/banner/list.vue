@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-table :data="getBannerList" style="width: 100%" height="480">
+    <el-table :data="getBannerList" style="width: 100%">
       <el-table-column label="编号" width="180">
         <template slot-scope="scope">
           <span style="margin-left: 10px">{{ scope.row.id }}</span>
@@ -98,5 +98,8 @@ export default {
 .img{
   widows: 60px;
   height: 60px;
+}
+.el-table{
+  height: calc(100vh - 60px);
 }
 </style>

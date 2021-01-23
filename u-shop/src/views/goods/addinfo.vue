@@ -165,24 +165,28 @@ export default {
     return {
       editor: null,
       goods: {
-        id: "", //分类编号，必填项
         first_cateid: "", //一级分类编号
         second_cateid: "", //二级分类编号
         goodsname: "", //商品名称
-        price: 0, //商品价格
-        market_price: 0, //市场价格
+        price: "", //商品价格
+        market_price: "", //市场价格
         img: "", //商品图片（文件）
         description: "", //商品描述
         specsid: "", //商品规格编号
         specsattr: "", //商品规格属性
-        isnew: 1, //是否新品1是2不是
-        ishot: 1, //是否热卖1是2不是
+        isnew: 1, //是否新品 1是 2否
+        ishot: 1, //是否热卖推荐1是 2否
         status: 1, //状态1正常2禁用
       },
       rules: {
         goodsname: [
           { required: true, message: "请输入商品名称", trigger: "blur" },
-          { min: 2, max: 6, message: "长度在 2 到 6 个字符", trigger: "blur" },
+          {
+            min: 2,
+            max: 15,
+            message: "长度在 2 到 15 个字符",
+            trigger: "blur",
+          },
         ],
         first_cateid: [
           { required: true, message: "请选择一级分类", trigger: "change" },
@@ -253,6 +257,7 @@ export default {
     },
     ...mapActions({
       getGoodsListAction: "goods/getGoodsListAction",
+      getGoodsCountAction: "goods/getGoodsCountAction",
       getCateListAction: "cate/getCateListAction",
       getSpecsListAction: "specs/getSpecsListAction",
     }),
@@ -270,18 +275,17 @@ export default {
     //确定/取消后重置
     reset() {
       this.goods = {
-        id: "", //分类编号，必填项
         first_cateid: "", //一级分类编号
         second_cateid: "", //二级分类编号
         goodsname: "", //商品名称
-        price: 0, //商品价格
-        market_price: 0, //市场价格
+        price: "", //商品价格
+        market_price: "", //市场价格
         img: "", //商品图片（文件）
         description: "", //商品描述
         specsid: "", //商品规格编号
         specsattr: "", //商品规格属性
-        isnew: 1, //是否新品1是2不是
-        ishot: 1, //是否热卖1是2不是
+        isnew: 1, //是否新品 1是 2否
+        ishot: 1, //是否热卖推荐1是 2否
         status: 1, //状态1正常2禁用
       };
       this.fileList = [];
@@ -296,13 +300,12 @@ export default {
             this.goods.id = id;
             this.fileList = this.goods.img
               ? [{ url: this.$imgUrl + this.goods.img }]
-              : "";
+              : [];
             this.goods.specsattr = this.goods.specsattr
               ? this.goods.specsattr.split(",")
               : [];
             this.changeCate(true);
             this.changeSpecs(true);
-            // this.editor.txt.html(this.goods.description)
           }
         })
         .catch((err) => {
@@ -312,17 +315,18 @@ export default {
     //封装一个编辑事件
     upDate() {
       this.goods.description = this.editor.txt.html();
+      this.goods.img = this.imgUrl ? this.imgUrl : '';
       let file = new FormData();
       for (let i in this.goods) {
         file.append(i, this.goods[i]);
       }
-      this.goods.img = this.imgUrl ? this.imgUrl : this.goods.img;
       GoodsEdit(file)
         .then((res) => {
           if (res.data.code == 200) {
             this.$message.success("操作成功");
             this.cancel();
             this.getGoodsListAction();
+            this.getGoodsCountAction();
           } else {
             this.$message.error("操作失败");
           }
@@ -335,11 +339,11 @@ export default {
     add(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
+          this.goods.img = this.imgUrl;
           this.goods.description = this.editor.txt.html();
           this.goods.specsattr = this.goods.specsattr
             ? this.goods.specsattr.join(",")
             : "";
-          this.goods.img = this.imgUrl;
           let file = new FormData();
           for (let i in this.goods) {
             file.append(i, this.goods[i]);
@@ -351,6 +355,7 @@ export default {
               this.$message.success("操作成功");
               this.cancel();
               this.getGoodsListAction();
+              this.getGoodsCountAction();
             } else {
               this.$message.error("操作失败");
             }

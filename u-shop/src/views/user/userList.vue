@@ -116,4 +116,7 @@ export default {
   margin-top: 20px;
   text-align: center;
 }
+.el-table{
+  height: calc(100vh - 60px);
+}
 </style>

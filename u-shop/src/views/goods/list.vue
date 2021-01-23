@@ -46,7 +46,7 @@
           </div>
         </template>
       </el-table-column>
-      <el-table-column label="操作"  width="200">
+      <el-table-column label="操作">
         <template slot-scope="scope">
           <el-button size="mini" type="primary" @click="edit(scope.row.id)"
             >编辑</el-button
@@ -108,10 +108,10 @@ export default {
         .then(() => {
           GoodsDelete({ id }).then((res) => {
             if (res.data.code == 200) {
-              console.log("删除成功");
               this.$message.success(res.data.msg);
               //当列表删除成功触发行动
               this.getGoodsListAction();
+              this.getGoodsCountAction()
             }else{
               this.$message.error(res.data.msg);
             }
@@ -139,5 +139,8 @@ export default {
 .el-pagination {
   margin-top: 20px;
   text-align: center;
+}
+.el-table{
+  height: calc(100vh - 60px);
 }
 </style>

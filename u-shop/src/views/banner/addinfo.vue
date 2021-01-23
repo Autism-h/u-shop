@@ -74,7 +74,7 @@ export default {
       rules: {
         title: [
           { required: true, message: "请输入轮播图名称", trigger: "blur" },
-          { min: 2, max: 6, message: "长度在 2 到 6 个字符", trigger: "blur" },
+          { min: 2, max: 15, message: "长度在 2 到 15 个字符", trigger: "blur" },
         ],
       },
       formLabelWidth: "120px",

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-table :data="roleList" style="width: 100%" height="480">
+    <el-table :data="roleList" style="width: 100%">
       <el-table-column label="角色编号" width="200">
         <template slot-scope="scope">
           <span style="margin-left: 10px">{{ scope.row.id }}</span>
@@ -85,5 +85,8 @@ export default {
 <style  lang="" scoped>
 .list {
   overflow: auto;
+}
+.el-table{
+  height: calc(100vh - 60px);
 }
 </style>

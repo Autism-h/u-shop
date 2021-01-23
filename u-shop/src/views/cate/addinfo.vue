@@ -159,7 +159,7 @@ export default {
             this.cate.id = id;
             this.fileList = this.cate.img
               ? [{ url: this.$imgUrl + this.cate.img }]
-              : "";
+              : [];
           }
         })
         .catch((err) => {

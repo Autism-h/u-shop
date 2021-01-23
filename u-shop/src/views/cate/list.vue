@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-table :data="getCateList" style="width: 100%" height="480" default-expand-all row-key="id" :tree-props="{children: 'children'}">
+    <el-table :data="getCateList" style="width: 100%" default-expand-all row-key="id" :tree-props="{children: 'children'}">
       <el-table-column label="分类编号" width="180">
         <template slot-scope="scope">
           <span style="margin-left: 10px">{{ scope.row.pid }}</span>
@@ -98,5 +98,8 @@ export default {
 .img{
   width: 60px;
   height: 60px;
+}
+.el-table{
+  height: calc(100vh - 60px);
 }
 </style>
