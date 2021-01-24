@@ -38,6 +38,11 @@ export const indexUrl = [
     path:'/banner',
     component:() => import ('../views/banner/banner'),
     name:'轮播图管理'
+  },
+  {
+    path:'/seck',
+    component:() => import ('../views/seck/seck'),
+    name:'秒杀管理'
   }
 ]
 

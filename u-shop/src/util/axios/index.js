@@ -242,7 +242,39 @@ export function BannerInfo(params){
 export function BannerEdit(data){
     return http.post('/api/banneredit',data)
 }
+
 //轮播图管理删除接口
 export function BannerDelete(data){
     return http.post('/api/bannerdelete',data)
+}
+
+// ==========================================================
+
+/* 秒杀管理 */
+
+// 秒杀管理添加
+export function Seckadd(data){
+    return http.post('/api/seckadd',data)
+}
+
+//秒杀管理列表
+export function SeckList(){
+    return http.get('/api/secklist')
+}
+
+//秒杀管理获取（一条）接口
+export function SeckInfo(params){
+    return http.get('/api/seckinfo',{
+        params
+    })
+}
+
+//轮播图管理修改接口
+export function SeckEdit(data){
+    return http.post('/api/seckedit',data)
+}
+
+//轮播图管理删除接口
+export function SeckDelete(data){
+    return http.post('/api/seckdelete',data)
 }
