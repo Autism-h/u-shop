@@ -46,7 +46,11 @@
           </el-select>
         </el-form-item>
         <el-form-item label="二级分类" :label-width="formLabelWidth">
-          <el-select v-model="seck.second_cateid" placeholder="请选择" @change="changegoods(false)">
+          <el-select
+            v-model="seck.second_cateid"
+            placeholder="请选择"
+            @change="changegoods(false)"
+          >
             <el-option
               v-for="item in secondCate"
               :key="item.id"
@@ -173,7 +177,7 @@ export default {
         goodsid: "", //商品编号
         status: 1, //状态1正常2禁用
       };
-      this.timer = ''
+      this.timer = "";
       this.$refs["ruleForm"].resetFields();
     },
     lookUp(id) {
@@ -199,8 +203,8 @@ export default {
         .then((res) => {
           if (res.data.code == 200) {
             this.$message.success("操作成功");
-            this.cancel();
             this.getSeckListAction();
+            this.cancel();
           } else {
             this.$message.error("操作失败");
           }

@@ -1,7 +1,7 @@
 <template>
     <div>
        <el-bread></el-bread>
-       <h1>欢迎登录U商城后台管理系统</h1>
+       <div id="container"></div>
     </div>
 </template>
 
@@ -12,9 +12,41 @@ export default {
 
         };
     },
+    mounted() {
+    //组件一加载就调用echarts数据图表
+    //初始化
+    let myChart = this.$Echarts.init(document.getElementById("container"));
+
+    //初始化配置项
+    let options = {
+      xAxis: {
+        //横轴
+        //"Error: Component xAxis.分类 not exists. Load it first."
+        //category
+        type: "category",
+        data: ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "放假"]
+      },
+      yAxis: {
+        //纵轴
+        type: "value"
+      },
+      series: [
+        {
+          //数据列
+          data: [120, 44, 66, 199, 255, 160, 120],
+          type: "line"
+        }
+      ]
+    };
+    //给图表设置配置项
+    myChart.setOption(options);
+  }
 };
 </script>
 
 <style  lang="" scoped>
-
+#container {
+  width: 1200px;
+  height: 600px;
+}
 </style>

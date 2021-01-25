@@ -20,6 +20,10 @@ for(let i in vGcom){
   Vue.component(i,vGcom[i])
 }
 
+//全局引入echarts
+let Echarts = require('echarts')
+Vue.prototype.$Echarts = Echarts
+
 //封装一个全局图片地址
 Vue.prototype.$imgUrl = 'http://localhost:3000'
 

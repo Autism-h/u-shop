@@ -14,7 +14,7 @@
       </el-menu-item>
       <el-submenu
         :index="item.id.toString()"
-        v-for="item in navList"
+        v-for="item in getUserInfo.menus"
         :key="item.id"
       >
         <template slot="title">
@@ -35,18 +35,18 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
       defaultActive: "/home",
-      navList: [],
     };
   },
   mounted() {
     this.defaultActive = this.$route.path;
-    if (sessionStorage.getItem("login")) {
-      this.navList = JSON.parse(sessionStorage.getItem("login")).menus;
-    }
+  },
+  computed: {
+    ...mapGetters(["getUserInfo"]),
   },
 };
 </script>

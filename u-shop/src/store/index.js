@@ -13,14 +13,39 @@ import banner from './modules/banner'
 import seck from './modules/seck'
 
 export default new vuex.Store({
-    modules:{
-        menu,
-        role,
-        user,
-        cate,
-        specs,
-        goods,
-        banner,
-        seck
+  state: {
+    loginInfo: sessionStorage.getItem('loginInfo') ? JSON.parse(sessionStorage.getItem('loginInfo')) : null //个人信息
+  },
+  getters: {
+    getUserInfo(state) {
+      return state.loginInfo
     }
+  },
+  mutations: {
+    CHANGE_USER(state, payload) {
+      state.loginInfo = payload
+      if (payload) {
+        //设置本地存储
+        sessionStorage.setItem('loginInfo', JSON.stringify(payload))
+      } else {
+        sessionStorage.removeItem('loginInfo')
+      }
+    }
+  },
+  //actionsstate
+  actions: {
+    changeUserInfoAction(contxt, payload) {
+      contxt.commit('CHANGE_USER', payload)
+    }
+  },
+  modules: {
+    menu,
+    role,
+    user,
+    cate,
+    specs,
+    goods,
+    banner,
+    seck
+  }
 })

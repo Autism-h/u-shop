@@ -8,7 +8,7 @@ let http = axios.create({
 //请求拦截
 http.interceptors.request.use(req=>{
     //从存储中取出来token
-    let token = sessionStorage.getItem('login') ? JSON.parse(sessionStorage.getItem('login')).token : ''
+    let token = sessionStorage.getItem('loginInfo') ? JSON.parse(sessionStorage.getItem('loginInfo')).token : ''
     //在请求头中添加token令牌
     req.headers.authorization = token
     return req

@@ -21,6 +21,7 @@
 
 <script>
 import { userLogin } from "../util/axios";
+import {mapActions} from 'vuex'
 export default {
   data() {
     return {
@@ -46,14 +47,16 @@ export default {
     };
   },
   methods: {
+    ...mapActions(['changeUserInfoAction']),
     login(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           userLogin(this.loginFrom).then((res) => {
             if (res.data.code == 200) {
-              sessionStorage.setItem('login',JSON.stringify(res.data.list))
-              this.$router.push({ path: "/home" });
+              // sessionStorage.setItem('login',JSON.stringify(res.data.list))
+              this.changeUserInfoAction(res.data.list)
               this.$message.success(res.data.msg);
+              this.$router.push({ path: "/home" });
             } else {
               this.$message.error(res.data.msg);
             }
