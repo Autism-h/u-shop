@@ -115,7 +115,7 @@ export default {
         if (res.data.code == 200) {
           this.$message.success(res.data.msg);
           //重新调取接口
-          this.MemberList();
+          this.getMemberList();
           //关闭弹框
           this.cancel();
         } else {
