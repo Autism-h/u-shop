@@ -278,3 +278,25 @@ export function SeckEdit(data){
 export function SeckDelete(data){
     return http.post('/api/seckdelete',data)
 }
+
+
+// ==========================================================
+
+/* 会员管理 */
+
+//会员管理列表
+export function MemberList(){
+    return http.get('/api/memberlist')
+}
+
+//会员获取（一条）
+export function MemberInfo(params){
+    return http.get('/api/memberinfo',{
+        params
+    })
+}
+
+//轮播图管理修改接口
+export function MemberEdit(data){
+    return http.post('/api/memberedit',data)
+}

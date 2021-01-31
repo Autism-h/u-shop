@@ -68,6 +68,14 @@ export const indexUrl = [
     }
   },
   {
+    path: '/member',
+    component: () => import('../views/member/member'),
+    name: '会员管理',
+    beforeEnter: (to, from, next) => {
+      hasUrl('/member') ? next() : next('/home')
+    }
+  },
+  {
     path: '/seck',
     component: () => import('../views/seck/seck'),
     name: '秒杀管理',
