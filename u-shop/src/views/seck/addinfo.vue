@@ -186,6 +186,10 @@ export default {
           if (res.data.code == 200) {
             this.seck = res.data.list;
             this.seck.id = id;
+            this.timer = [
+              new Date(parseFloat(this.seck.begintime)),
+              new Date(parseFloat(this.seck.endtime))
+            ]
             this.changeCate(true);
             this.changeSpecs(true);
             this.changegoods(true);
